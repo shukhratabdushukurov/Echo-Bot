@@ -1,6 +1,10 @@
 venv/
 .env
 .idea/
+env/
+*.zip
+*.rar
+
 
 
 

@@ -7,7 +7,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = TeleBot(BOT_TOKEN, parse_mode='HTML')
-# print(bot.get_me())
+
 @bot.message_handler(commands=['start', 'info', 'about'])
 def handle_commands(message:types.Message):
     username = message.chat.username
@@ -46,5 +46,11 @@ def handle_document(message: types.Message):
     print(message.document)
     chat_id = message.chat.id
     bot.send_document(chat_id, message.document.file_id)
+
+@bot.message_handler(content_types=['video'])
+def handle_video(message: types.Message):
+    print(message.video)
+    chat_id = message.chat.id
+    bot.send_document(chat_id, message.video.file_id)
 
 bot.infinity_polling()
